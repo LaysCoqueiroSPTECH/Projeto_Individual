@@ -20,7 +20,7 @@ header{
    list-style: none;
    display: flex;
    flex-direction: row;
-  justify-content: space-between;
+   justify-content: space-between;
 }
 .header_nav a {
     color: white;
