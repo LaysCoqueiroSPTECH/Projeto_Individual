@@ -1,0 +1,67 @@
+/* .botao_greyhome {
+    margin-left: 50px;
+    background-color: #2E3E54;
+    border-radius: 15px;
+    padding: 20px 40px */
+        /* 10px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+/* } */
+
+
+/* .botao_greyhome a {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    /* expessura da fonte */
+/* } */
+ 
+
+
+.button_quiz {
+    background-color: white;
+    border-radius: 15px;
+    padding: 12px 50px;/* 20px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+    margin-left: 60%;
+    text-align: center;
+    margin-right: 60%;
+    margin-top: 40px;
+
+}
+
+.button_quiz a {
+    font-size: 20px;
+    font-weight: 400;/* expessura da fonte */
+    color: #2E3E54;
+
+}
+
+.button_sobremim {
+    background-color: white;
+    border-radius: 15px;
+    padding: 12px 30px;
+    text-align: center;
+    margin-top: 300px;
+
+
+}
+
+.button_sobremim a {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2E3E54;
+}
+
+.button_biscoito {
+    background-color:white;
+    border-radius: 15px;
+    padding: 12px 30px;
+    position: absolute;
+    margin-left: -450px;
+    margin-top: 80px;
+
+}
+
+.button_biscoito a {
+    font-size: 20px;
+    font-weight: 400;
+    color:#2E3E54;
+}

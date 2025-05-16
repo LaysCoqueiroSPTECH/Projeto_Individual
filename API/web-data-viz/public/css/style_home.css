@@ -1,0 +1,298 @@
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+
+    a {
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    * {
+        font-family: "Barlow", sans-serif;
+        font-weight: 200;/* expessura da fonte */
+        font-size: 17px;
+        margin: 0;
+        padding: 0; /* retira o espaço do topo */
+    }
+
+    /************** PRIMEIRO BANNER **************/
+    .container_greys {
+        background-color: #C9C4BE;
+    }
+    .pagina_home {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }    
+    .letreiro {
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+
+    .letreiro img {
+        height: 50px;
+        
+    }
+
+    .conteudo_home {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    /* .imagem_bannerGrey {
+        margin-top: 40px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .imagem_bannerGrey img {
+        height: 400px;
+        width: 290px;
+        margin-left: 0;
+        margin-right: 30%;
+        margin-bottom: 20%;
+        margin-top: 20%;
+        border-radius: 10px;
+    } */
+    .frase {
+        margin-left: 50px;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        font-size: 35px;
+    }
+
+    .autor {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    /************ BANNER DO SOBRE MIM **********/
+    .container_sobremim {
+        background-color: #2E3E54;
+        color: white;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      
+    }
+
+    .pagina_sobremim {
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start ;
+        width: 100%;
+    }
+
+    .titulo_sobre_mim h1 {
+        font-size: 35px;
+        padding: 5px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        margin-left: 650px;
+        
+    }
+
+    .conteudo_sobremim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .imagem_profissional {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: 40px; /* espaço entre imagem e texto */
+        margin-top: 5%;
+    }
+
+    .imagem_profissional img {
+        height: 400px;
+        width: 360px;
+        border-radius: 10px;
+    }
+
+    .sobre_mim p {
+        font-size: 25px;
+        display: flex;
+        max-width: 600px;
+    
+    }
+    /********** BANNER DO QUIZ **********/
+    .container_quiz {
+        background-color: #2E3E54;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .pagina_quiz{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+       
+    }
+    .titulo_quiz h1{
+        font-size: 35px;
+        padding: 5px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        color: #ffffff;
+        margin-left: 20px;
+        margin-top: 10%;
+    
+    }
+    .imagem_quiz {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 40px; /* espaço entre imagem e texto */
+        margin-top: 20px; /* margem do topo da imagem para o titulo */
+    }
+    .imagem_quiz img{
+        height: 45%;
+        width: 45%;
+        border-radius: 10px;
+        
+    }
+
+    /************* BANNER DO BISCOITO DA SORTE ************/
+    .container_biscoito {
+        background-color: #2E3E54;
+        color: white;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .pagina_biscoito {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titulo_biscoito h1 {
+        font-size: 35px;
+        padding: 10px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        margin-top: 30%;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        margin-left: 60%;
+        width: 100%;
+    }
+
+    .conteudo_biscoito {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 10px;
+        text-align: center;
+        flex-wrap: wrap;
+        margin-left: 300px;
+    }
+
+    .imagem_biscoito {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 40px;
+        /* espaço entre imagem e texto */
+    }
+
+    .imagem_biscoito img {
+        width: 320px;
+        height: 400px;
+    }
+
+    .biscoito_da_sorte p {
+        font-size: 25px;
+        display: flex;
+        max-width: 600px;
+        justify-content: flex-end;
+        flex-direction: column;
+        align-items: end;
+    }
+
+     /************* BANNER DO SOBRE GREY´S ************/
+    .container_sobregreys{
+        background-color: #2E3E54;
+        color: white;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      
+    }
+
+    .pagina_sobregreys{
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+        width: 100%;
+    }
+
+    .titulo_sobre_greys h1 {
+        font-size: 35px;
+        padding: 5px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        margin-top: 10%;
+        
+    }
+
+    .conteudo_sobregreys {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .imagem_sobregreys {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-right: 40px; /* espaço entre imagem e texto */
+    }
+
+    .imagem_sobregreys img {
+        height: 400px;
+        width: 360px;
+        border-radius: 10px;
+    }
+
+    .texto_sobregreys p {
+        font-size: 20px;
+        display: flex;
+        /* max-width: 600px; */
+    
+    }
+   
+
+    /*************** FOOTER **************/ 
+    .pagina_footer{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 100%;
+        background-color: #849BB9;
+        color: #333;
+    }
+    .texto_footer h1{
+        text-decoration: none;
+        margin-left: 40%;
+        margin-bottom: 20px;
+        color: white;   
+    }
+    .imagem_footer{
+        margin-left: 10%;
+        margin-top: 50px;
+    }
