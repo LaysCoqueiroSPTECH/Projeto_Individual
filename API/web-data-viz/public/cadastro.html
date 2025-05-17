@@ -2,100 +2,82 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreyVerse</title>
+  <link rel="stylesheet" href="css/style_home.css">
+  <link rel="stylesheet" href="css/style_botoes.css">
+  <link rel="stylesheet" href="css/style_nav_footer.css">
+  <link rel="stylesheet" href="css/style_cadastro.css">
+  <link rel="shortcut icon" type="imagex/png" href="assets/imgs/logo.png">
 </head>
 
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
+  <header>
+    <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
+    <nav class="header_nav">
+      <ul>
+        <li><a href="">Início</a></li>
+        <li><a href="">Sobre Mim</a></li>
+        <li><a href="">Quiz</a></li>
+        <li><a href="">Sobre Grey´s</a></li>
+        <li><a class="button_cadlog" id="id_cadlog" href=""> Cadastro/Login</a></li>
       </ul>
-    </div>
-  </div>
-  <!--header fim-->
-
+    </nav>
+  </header>
+<section class="erro">
   <div class="login">
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div>
+    <div class="cadastro_texto">
+      <h2 class="cadastro_h2">CADASTRE-SE !</h2>
+    </div>
     <div class="container">
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
+
+</section>
+<section class="card_cadastro">
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
           <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
+            <span id="span_campos">Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
           <div class="campo">
-            <span>CPF:</span>
-            <input id="cpf_input" type="text" placeholder="Seu CPF" />
+            <span id="span_campos">E-mail:</span>
+            <input id="email_input" type="text" placeholder="email@provedor.com" />
           </div>
           <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
+            <span id="span_campos">Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
           <div class="campo">
-            <span>Confirmação da Senha:</span>
+            <span id="span_campos">Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+          <img src="assets/imgs/icons8-ampulheta-quase-vazia.gif" alt="iphone-spinner">
         </div>
-
+</section>
         <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+  <section class="container_footer">
+    <div class="pagina_footer">
+      <div class="imagem_footer">
+        <img src="assets/imgs/logo.png" alt="Logo do site GreyVerse" height="100px" width="130px">
+      </div>
+      <div class="texto_footer">
+        <h1> © Copyright Lays Abreu. Todos os direitos reservados </h1>
+      </div>
     </div>
-  </div>
-  <!--footer fim-->
+
+  </section>
+
 </body>
 
 </html>
@@ -103,62 +85,53 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
+  let listaUsuariosCadastrados = [];
 
   function cadastrar() {
     // aguardar();
-    
+
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
-    var cpfVar = cpf_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var idUsuario;
 
 
-// Verificando se email não tem arroba, quando ele retorna -1 é porque não tem
-    if(emailVar.indexOf("@") == -1){
+    // Verificando se email não tem arroba, quando ele retorna -1 é porque não tem
+    if (emailVar.indexOf("@") == -1) {
       cardErro.style.display = "block";
-    // mensagem_erro.innerHTML +=
-    //         "O email deve conter @";
-    alert ("O email deve conter @")
-    } 
+      // mensagem_erro.innerHTML +=
+      //         "O email deve conter @";
+      alert("O email deve conter @")
+    }
     // Verificando se a senha é menor que 6 caracteres
-    if(senhaVar.length < 6){
+    if (senhaVar.length < 6) {
       cardErro.style.display = "block";
       // mensagem_erro.innerHTML +=
       //       "A senha deve ser maior que 6 caracteres";
-      alert ("A senha deve ser maior que 6 caracteres")
-    } if (senhaVar != confirmacaoSenhaVar){
+      alert("A senha deve ser maior que 6 caracteres")
+    } if (senhaVar != confirmacaoSenhaVar) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML +=
-            "As senhas não conhecidem";
+        "As senhas não conhecidem";
     }
-    if(cpfVar.length != 11){
+    // Verificando se o tamanho do nome é menor que 6
+    if (nomeVar.length < 1) {
       cardErro.style.display = "block";
       // mensagem_erro.innerHTML +=
-      //       "Informar o CPF corretamente!";
-      alert ("O CPF deve ser igual a 11 caracteres")
-    }
-        // Verificando se o tamanho do nome é menor que 6
-        if(nomeVar.length < 1){
-          cardErro.style.display = "block";
-      // mensagem_erro.innerHTML +=
       //       "O nome deve ser maior que 1 caractere";
-      alert ("O nome deve ser maior que 1 caractere")
-    } 
-      
+      alert("O nome deve ser maior que 1 caractere")
+    }
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       cpfVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -171,9 +144,9 @@
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+    for (let i = 0; i < listaUsuariosCadastrados.length; i++) {
+      if (listaUsuariosCadastrados[i].codigo_ativacao == codigoVar) {
+        idUsuario = listaUsuariosCadastrados[i].idUsuario
         console.log("Código de ativação válido.");
         break;
       } else {
@@ -193,10 +166,9 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
-        cpfServer: cpfVar, 
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        idUsuarioServer: idUsuario
       }),
     })
       .then(function (resposta) {
@@ -234,10 +206,10 @@
       .then(function (resposta) {
         resposta.json().then((empresas) => {
           empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+            listaUsuariosCadastrados.push(empresa);
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            console.log("listaUsuariosCadastrados")
+            console.log(listaUsuariosCadastrados[0].idUsuario)
           });
         });
       })

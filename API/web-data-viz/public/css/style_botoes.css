@@ -2,21 +2,27 @@
     margin-left: 50px;
     background-color: #2E3E54;
     border-radius: 15px;
-    padding: 20px 40px */
+    padding: 20px 40px  */
         /* 10px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
 /* } */
-
-
-/* .botao_greyhome a {
+/* 
+ .botao_greyhome a {
     font-size: 20px;
     font-weight: 400;
-    color: white;
-    /* expessura da fonte */
-/* } */
+    color: white; /* expessura da fonte */
+/* }  */
  
+.button_quiz_conhecimento {
+    background-color: white;
+    border-radius: 15px;
+    padding: 12px 50px;/* 20px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+    margin-left: 60%;
+    text-align: center;
+    margin-right: 60%;
+    margin-top: 40px;
 
-
-.button_quiz {
+}
+.button_quiz_personagem {
     background-color: white;
     border-radius: 15px;
     padding: 12px 50px;/* 20px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */

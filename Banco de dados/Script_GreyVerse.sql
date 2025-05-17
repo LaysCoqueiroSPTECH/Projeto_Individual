@@ -3,10 +3,14 @@ Use GreyVerse;
 
 CREATE TABLE Usuario(
 idUsuario INT PRIMARY KEY auto_increment, 
+nome varchar(45),
 email varchar (70),
 dtNasc date, 
 senha varchar (70)
 );
+SELECT * FROM Usuario;
+
+
 CREATE TABLE Quiz (
     idQuiz INT PRIMARY KEY auto_increment,
     titulo VARCHAR(100) NOT NULL,

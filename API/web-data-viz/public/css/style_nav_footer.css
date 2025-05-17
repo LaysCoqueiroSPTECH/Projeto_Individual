@@ -39,4 +39,22 @@ header{
   font-size: 20px;
   font-weight: 400;
 }
-/***************************  HEADER  ************/
+/***************************  FOOTER  ************/
+.pagina_footer{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 100%;
+        background-color: #849BB9;
+        color: #333;
+    }
+    .texto_footer h1{
+        text-decoration: none;
+        margin-left: 40%;
+        margin-bottom: 20px;
+        color: white;   
+    }
+    .imagem_footer{
+        margin-left: 10%;
+        margin-top: 50px;
+    }
