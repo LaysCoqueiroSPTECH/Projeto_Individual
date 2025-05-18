@@ -1,43 +1,33 @@
-/* .botao_greyhome {
-    margin-left: 50px;
-    background-color: #2E3E54;
-    border-radius: 15px;
-    padding: 20px 40px  */
-        /* 10px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
-/* } */
-/* 
- .botao_greyhome a {
-    font-size: 20px;
-    font-weight: 400;
-    color: white; /* expessura da fonte */
-/* }  */
- 
+/*************** BOTÃO QUIZ **************/
 .button_quiz_conhecimento {
     background-color: white;
     border-radius: 15px;
-    padding: 12px 50px;/* 20px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+    padding: 12px 50px;
     margin-left: 60%;
     text-align: center;
     margin-right: 60%;
     margin-top: 40px;
 
 }
-.button_quiz_personagem {
+.button_quiz {
     background-color: white;
     border-radius: 15px;
-    padding: 12px 50px;/* 20px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+    padding: 12px 50px;
     margin-left: 60%;
     text-align: center;
     margin-right: 60%;
     margin-top: 40px;
-
 }
-
 .button_quiz a {
     font-size: 20px;
-    font-weight: 400;/* expessura da fonte */
+    font-weight: 400;
     color: #2E3E54;
+}
+/***************** BOTÃO SOBRE MIM *************/
 
+.button_container {
+    margin-top: -120px;
+    margin-left: 5%; 
 }
 
 .button_sobremim {
@@ -45,29 +35,26 @@
     border-radius: 15px;
     padding: 12px 30px;
     text-align: center;
-    margin-top: 300px;
-
+    margin-left: 450px;
 
 }
-
 .button_sobremim a {
     font-size: 20px;
     font-weight: 400;
     color: #2E3E54;
 }
-
-.button_biscoito {
-    background-color:white;
+/***************** BOTÃO CADASTRO *************/
+.button_cadastro {
+    background-color: white;
     border-radius: 15px;
     padding: 12px 30px;
-    position: absolute;
-    margin-left: -450px;
-    margin-top: 80px;
+    text-align: center;
+    width: 40%;
+    margin-left: 30%;
 
 }
-
-.button_biscoito a {
+.button_cadastro {
     font-size: 20px;
     font-weight: 400;
-    color:#2E3E54;
+    color: #2E3E54;
 }

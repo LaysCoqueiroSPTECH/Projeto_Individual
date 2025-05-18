@@ -12,33 +12,34 @@
   <link rel="shortcut icon" type="imagex/png" href="assets/imgs/logo.png">
 </head>
 
+<body>
+  <!--header inicio-->
   <header>
-    <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
-    <nav class="header_nav">
-      <ul>
-        <li><a href="">Início</a></li>
-        <li><a href="">Sobre Mim</a></li>
-        <li><a href="">Quiz</a></li>
-        <li><a href="">Sobre Grey´s</a></li>
-        <li><a class="button_cadlog" id="id_cadlog" href=""> Cadastro/Login</a></li>
-      </ul>
-    </nav>
-  </header>
-<section class="erro">
+        <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
+        <nav class="header_nav">
+            <ul>
+                <li><a href="index.html #inicio">Início</a></li>
+                <li><a href="index.html #sobre_mim">Sobre Mim</a></li>
+                <li><a href="index.html #quiz">Quiz</a></li>
+                <li><a href="index.html #sobre_greys">Sobre Grey´s</a></li>
+                <li><a class="button_cadlog" id="id_cadlog" href="cadastro.html"> Cadastro/Login</a></li>
+            </ul>
+        </nav>
+    </header>
   <div class="login">
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div>
+    <section class="container_cadastro">
     <div class="cadastro_texto">
-      <h2 class="cadastro_h2">CADASTRE-SE !</h2>
+      <h1>CADASTRE-SE !</h1>
     </div>
+    
     <div class="container">
       <div class="card card-cadastro">
 
-</section>
-<section class="card_cadastro">
         <div class="formulario">
           <div class="campo">
             <span id="span_campos">Nome:</span>
@@ -56,30 +57,20 @@
             <span id="span_campos">Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+          <button class="button_cadastro" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
           <img src="assets/imgs/icons8-ampulheta-quase-vazia.gif" alt="iphone-spinner">
         </div>
-</section>
+        <div class="imagem_greys">
+          <img src="assets/imgs/equipe_greys1.png" alt="">
+        </div>
         <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
-  <section class="container_footer">
-    <div class="pagina_footer">
-      <div class="imagem_footer">
-        <img src="assets/imgs/logo.png" alt="Logo do site GreyVerse" height="100px" width="130px">
-      </div>
-      <div class="texto_footer">
-        <h1> © Copyright Lays Abreu. Todos os direitos reservados </h1>
-      </div>
-    </div>
-
   </section>
-
 </body>
-
 </html>
 
 <script>
