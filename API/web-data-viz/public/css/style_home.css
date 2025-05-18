@@ -40,6 +40,7 @@
         justify-content: space-between;
         align-items: center;
     }
+
     .frase {
         border-top: 1px solid #333;
         border-bottom: 1px solid #333;
@@ -49,6 +50,7 @@
         margin-top: 20px;
         margin-left: 30%;
     }
+
     .autor {
         width: 100%;
         text-align: center;
@@ -116,84 +118,84 @@
     }
 
     /************ BANNER DO SOBRE MIM **********/
-.container_sobremim {
-  background-color: #2E3E54;
-  color: white;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center; 
-  align-items: flex-start;
-}
+    .container_sobremim {
+        background-color: #2E3E54;
+        color: white;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
 
-.pagina_sobremim {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  width: 100%;
-  max-width: 900px;
-}
+    .pagina_sobremim {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 900px;
+    }
 
-.titulo_sobre_mim {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .titulo_sobre_mim {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-.titulo_sobre_mim h1 {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  font-size: 35px;
-  padding: 5px 0;
-  display: inline-block;
-}
+    .titulo_sobre_mim h1 {
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        font-size: 35px;
+        padding: 5px 0;
+        display: inline-block;
+    }
 
-.conteudo_sobremim {
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
-  width: 100%;
-  padding: 20px; 
-}
+    .conteudo_sobremim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+    }
 
-.imagem_profissional {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-right: 40px;
-  max-width: 400px; 
-  width: 40%; 
-}
+    .imagem_profissional {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: 40px;
+        max-width: 400px;
+        width: 40%;
+    }
 
-.imagem_profissional img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
+    .imagem_profissional img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
 
-.sobre_mim {
-  width: 60%; 
-}
+    .sobre_mim {
+        width: 60%;
+    }
 
-.sobre_mim p {
-  font-size: 20px;
-  margin-left: 0; 
-}
+    .sobre_mim p {
+        font-size: 20px;
+        margin-left: 0;
+    }
 
-.button_container {
-  display: flex;
-  justify-content: flex-start; 
-  width: 60%; 
-  margin-top: 20px; 
-}
+    .button_container {
+        display: flex;
+        justify-content: flex-start;
+        width: 60%;
+        margin-top: 20px;
+    }
 
-.botao_sobremim {
-  background-color: white;
-  border-radius: 15px;
-  padding: 12px 30px;
-  text-align: center;
-  margin-left: 0;
-  margin-right: auto; 
-}
+    .botao_sobremim {
+        background-color: white;
+        border-radius: 15px;
+        padding: 12px 30px;
+        text-align: center;
+        margin-left: 0;
+        margin-right: auto;
+    }
 
 
     /********** BANNER DO QUIZ **********/
@@ -202,12 +204,14 @@
         display: flex;
         flex-direction: column;
     }
+
     .pagina_quiz {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 5%;
     }
+
     .titulo_quiz h1 {
         font-size: 35px;
         padding: 5px 0;
@@ -219,6 +223,7 @@
         margin-left: 20px;
         margin-top: 5%;
     }
+
     .imagem_quiz {
         display: flex;
         justify-content: center;
@@ -226,31 +231,37 @@
         margin-right: 40px;
         margin-top: 20px;
     }
+
     .imagem_quiz img {
         height: 350px;
         width: 450px;
         border-radius: 10px;
     }
-    .box_conhecimento{
+
+    .box_conhecimento {
         color: white;
         font-size: 17px;
     }
-    .box_conhecimento h3{
+
+    .box_conhecimento h3 {
         font-size: 22px;
     }
+
     .card-quiz {
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  margin: 20px; 
-  text-align: center;
-}
-.quiz-cards-container {
-  display: flex;
-  justify-content: center; 
-  width: 100%; 
-  padding: 20px; 
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        text-align: center;
+    }
+
+    .quiz-cards-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+    }
+
     /*************** FOOTER **************/
     .pagina_footer {
         display: flex;
@@ -271,7 +282,8 @@
         margin-left: 10%;
         margin-top: 50px;
     }
-        /*************** CARROSSEL **************/
+
+    /*************** CARROSSEL **************/
     .carrossel {
         position: relative;
         width: 400%;
