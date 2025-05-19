@@ -10,7 +10,6 @@ senha varchar (70)
 );
 SELECT * FROM Usuario;
 
-
 CREATE TABLE Quiz (
     idQuiz INT PRIMARY KEY auto_increment,
     titulo VARCHAR(100) NOT NULL,
