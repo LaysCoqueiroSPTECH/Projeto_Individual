@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
 
-    a {
-        text-decoration: none;
-        white-space: nowrap;
-    }
+a {
+    text-decoration: none;
+    white-space: nowrap;
+}
 
-    * {
-        font-family: "Barlow", sans-serif;
-        font-weight: 200;
-        font-size: 17px;
-        margin: 0;
-        padding: 0;
-    }
+* {
+    font-family: "Barlow", sans-serif;
+    font-weight: 200;
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+}
+
 /*************** BOTÃO QUIZ **************/
 .button_quiz_conhecimento {
     background-color: white;
@@ -21,8 +22,10 @@
     text-align: center;
     margin-right: 60%;
     margin-top: 40px;
+    cursor: pointer;
 
 }
+
 .button_quiz {
     background-color: white;
     border-radius: 15px;
@@ -31,17 +34,21 @@
     text-align: center;
     margin-right: 60%;
     margin-top: 40px;
+    cursor: pointer;
 }
+
 .button_quiz a {
     font-size: 20px;
     font-weight: 400;
     color: #2E3E54;
 }
+
 /***************** BOTÃO SOBRE MIM *************/
 
 .button_container {
     margin-top: -120px;
-    margin-left: 5%; 
+    margin-left: 5%;
+    cursor: pointer;
 }
 
 .button_sobremim {
@@ -50,13 +57,16 @@
     padding: 12px 30px;
     text-align: center;
     margin-left: 450px;
+    cursor: pointer;
 
 }
+
 .button_sobremim a {
     font-size: 20px;
     font-weight: 400;
     color: #2E3E54;
 }
+
 /***************** BOTÃO CADASTRO *************/
 .button_cadastro {
     background-color: white;
@@ -65,8 +75,10 @@
     text-align: center;
     width: 40%;
     margin-left: 40%;
+    cursor: pointer;
 
 }
+
 /***************** BOTÃO LOGIN *************/
 .button_login {
     background-color: white;
@@ -75,17 +87,37 @@
     text-align: center;
     width: 40%;
     margin-left: 40%;
+    cursor: pointer;
 }
-.button_cadastrar{
+
+.button_cadastrar {
     background-color: white;
     border-radius: 15px;
     padding: 5px 10px;
     text-align: center;
     width: 40%;
     margin-left: 40%;
+    cursor: pointer;
 }
-.button_cadastrar a{
+
+.button_cadastrar a {
     font-size: 20px;
     font-weight: 400;
     color: #2E3E54;
+    cursor: pointer;
 }
+
+.button_avancar {
+    background-color: #2E3E54;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 15px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 40%;
+    margin: 20px 30% 10px;
+    cursor: pointer;
+    display: none;
+}
+

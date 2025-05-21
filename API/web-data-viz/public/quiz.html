@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,25 +21,137 @@
                 <li><a href="index.html #quiz">Quiz</a></li>
                 <li><a href="index.html">Sobre Grey´s</a></li>
                 <li><a class="button_cadlog" id="id_cadlog" href="login.html"> Cadastro/Login</a></li>
-            </ul>  
+            </ul>
         </nav>
     </header>
-    
-<div class="quiz">
-    <h1> Quiz</h1>
-    <div class="perguntas">
-        <h2> Questões </h2>
-        <div id="botoes_quiz">
-            <button class="btn_quiz"> Pergunta 1</button>
-            <button class="btn_quiz"> Pergunta 2</button>
-            <button class="btn_quiz"> Pergunta 3</button>
-            <button class="btn_quiz"> Pergunta 4</button>
+
+    <div class="quiz">
+        <h1> O quanto você conhece de Greys ? </h1>
+        <div class="perguntas">
+            <h2> Questões </h2>
+            <div id="botoes_quiz">
+                <button class="btn_quiz"> Pergunta 1</button>
+                <button class="btn_quiz"> Pergunta 2</button>
+                <button class="btn_quiz"> Pergunta 3</button>
+                <button class="btn_quiz"> Pergunta 4</button>
+            </div>
+            <button class="button_avancar"> Avançar</button>
         </div>
-        <button class="botao_avancar"> Avançar</button>
     </div>
-</div>
 </body>
+
 </html>
 <script>
-    
+    var questao = [
+        {
+            questoes: "Quem recebe o apelido de 007 ? ",
+            respostas: [
+                { id: 1, text: "Alex Karev", correct: false },
+                { id: 2, text: "George O'marley", correct: true },
+                { id: 3, text: "Izzie", correct: false },
+                { id: 4, text: "Preston Burke", correct: false },
+            ],
+        },
+        {
+            questoes: "Quantos episódios existem até a 20°temporada ? (Estava no texto sobre grey´s) ",
+            respostas: [
+                { id: 1, text: "200", correct: false },
+                { id: 2, text: "249", correct: false },
+                { id: 3, text: "Mais de 400", correct: true },
+                { id: 4, text: "397", correct: false },
+            ],
+        },
+        {
+            questoes: "Como se chamava o hospital na primeira temporada ? ",
+            respostas: [
+                { id: 1, text: "Seattle Hospital", correct: false },
+                { id: 2, text: "Seattle Grey Hxospital", correct: false },
+                { id: 3, text: "Seattle Grace Hospital", correct: true },
+                { id: 4, text: "Seattle Grace West", correct: false },
+            ],
+        },
+        {
+            questoes: "O que a mãe da Meredith disse para ela quando ficou lúcida ? ",
+            respostas: [
+                { id: 1, text: "Você é chata", correct: false },
+                { id: 2, text: "Estou com raiva de você", correct: false },
+                { id: 3, text: "Você é uma médica ruim", correct: false },
+                { id: 4, text: "Você é um ser humano comum", correct: true },
+            ],
+
+        },
+        {
+            questoes: "O que causa intriga entre Meredit e Cristina no primeiro episódio? ",
+            respostas: [
+                { id: 1, text: "Cristina descobriu sobre o Derek", correct: true },
+                { id: 2, text: "A amizade de Meredith e Izzie", correct: false },
+                { id: 3, text: "Cristina se achar melhor que Meredith", correct: false },
+                { id: 4, text: "Porque elas não se gostavam ainda", correct: false },
+            ],
+        },
+        {
+            questoes: "Qual desses personagens não fazia parte da primeira temporada? ",
+            respostas: [
+                { id: 1, text: "Miranda Bailey", correct: false },
+                { id: 2, text: "Alex Karev", correct: false },
+                { id: 3, text: "Callie Torres", correct: true },
+                { id: 4, text: "Richard Webber", correct: false },
+            ],
+        },
+        {
+            questoes: "Em qual temporada a equipe do Mercy West passa a trabalhar no hospital principal da série? ",
+            respostas: [
+                { id: 1, text: "6° temprada", correct: false },
+                { id: 2, text: "4° temporada", correct: true },
+                { id: 3, text: "5° temporada", correct: false },
+                { id: 4, text: "3° temporada", correct: false },
+            ],
+        },
+        {
+            questoes: "Quem vira o chefe de cirurgia na 8° temporada ? ",
+            respostas: [
+                { id: 1, text: "Derek Shepherd", correct: true },
+                { id: 2, text: "Mark Sloan", correct: false },
+                { id: 3, text: "Owen Hunt", correct: false },
+                { id: 4, text: "Miranda Bailey", correct: false },
+            ],
+        },
+        {
+            questoes: " Qual era a touca que era marca registrada do Derek ? ",
+            respostas: [
+                { id: 1, text: "Azul com simbolo de estetoscopio branco", correct: false },
+                { id: 2, text: "Azul marinho", correct: false },
+                { id: 3, text: "Azul marinho com nuances do mar", correct: false },
+                { id: 4, text: "De barcas", correct: true },
+            ],
+        },
+        {
+            questoes: "Qual parte do hospital a Critina ama e chama todos os internos para conhecerem? ",
+            respostas: [
+                { id: 1, text: "Pediatria", correct: false },
+                { id: 2, text: "Dermatologia", correct: true },
+                { id: 3, text: "Psiquiatria", correct: false },
+                { id: 4, text: "Ala da Cardio", correct: false },
+            ],
+        },
+    ]
+    var perguntasElemento = document.getElementById("questoes");
+    var perguntasElemento = document.getElementById("botoes_quiz");
+    var perguntasElemento = document.getElementById("button_avancar");
+
+    var questaoAtual = 0;
+    var pontuacao = 0;
+
+    function listarQuiz() {
+        questaoAtual = 0;
+        pontuacao = 0;
+        button_avancar.innerHTML = "Próxima";
+        mostrarQuestoes();
+    } function mostrarQuestoes() {
+        var questaoAtual = questoes[questaoAtualIndex];
+        var questaoON = currentQuestionIndex + 1;
+        questaoElement.innerHTML = questaoON + " . " + questaoAtual.questao;
+
+    }
+    mostrarQuestoes();
 </script>
