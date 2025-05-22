@@ -18,11 +18,12 @@ header{
     background-color: #849BB9;
     display: flex;
     flex-direction: row; 
-    align-items: center; /* alinha os elementos como se fossem uma camada de cima, meio e baixo */
+    align-items: center; 
     justify-content: space-between;
 
 }.header_nav{
     width: 40%;
+    flex-wrap: wrap;
 
 } .header_nav ul{
    list-style: none;
@@ -35,17 +36,18 @@ header{
     text-decoration: none;
     font-weight: bold;
     font-family: "Barlow", sans-serif;
-    font-weight: 300; /* expessura da fonte */
+    font-weight: 300; 
   }
   .header_nav li {
-    margin-right: 20px; /* margem para o lado direito*/
+    margin-right: 20px; 
 }
 .button_cadlog{
   background-color: #2E3E54;
   border-radius: 15px;
-  padding: 10px 22px; /* 10px de cima e baixo (top e bottom) e 17px de esquerda para direita (left e right) */
+  padding: 10px 22px; 
   font-size: 20px;
   font-weight: 400;
+  flex-wrap: wrap;
 }
 /***************************  FOOTER  ************/
 .pagina_footer{
