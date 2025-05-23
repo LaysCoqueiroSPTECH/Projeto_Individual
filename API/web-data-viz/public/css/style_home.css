@@ -50,7 +50,7 @@
         border-top: 1px solid #333;
         border-bottom: 1px solid #333;
         font-size: 35px;
-        padding: 5px 0; 
+        padding: 5px 0;
     }
 
     .autor {
@@ -59,7 +59,7 @@
         margin-bottom: 30px;
         justify-content: center;
         color: #333;
- 
+
     }
 
     /************* BANNER DO SOBRE GREY´S ************/
@@ -289,88 +289,57 @@
     }
 
     /*************** CARROSSEL **************/
-    .carrossel-container {
-        width: 400px;
-        height: 400px;
-        overflow: hidden;
-        margin: 50px auto;
-        border-radius: 10px;
-        position: relative;
+
+    body{
+         overflow-x: hidden;
     }
+   .carrossel-container {
+    width: 400px; 
+    height: auto; /* Altura automática para se ajustar à imagem */
+    overflow: hidden; /* Esconde as imagens fora do container */
+    margin: 30px auto;
+    border-radius: 10px;
+}
 
-    .carrossel-slide {
-        display: flex;
-        width: calc(400px * 14);
-        height: 100%;
-        animation: slide 56s linear infinite;
-    }
+.carrossel-slide {
+    display: flex;
+    width: calc(400px * 13); /* Largura total para 13 imagens de 400px */
+    height: 450px; 
+    animation: slide 40s linear infinite; 
+}
 
-    .carrossel-slide img {
-        width: 450px;
-        height: 600px;
-        border-radius: 5%;
-        object-fit: cover; /* ou cover com object-position ajustado */
-
-    }
-
-    @keyframes slide {
-        0% {
-            transform: translateX(0);
-        }
-
-        7.14% {
-            transform: translateX(0);
-        }
-
-        14.28% {
-            transform: translateX(-400px);
-        }
-
-        21.42% {
-            transform: translateX(-400px);
-        }
-
-        28.56% {
-            transform: translateX(-800px);
-        }
-
-        35.7% {
-            transform: translateX(-800px);
-        }
-
-        42.84% {
-            transform: translateX(-1200px);
-        }
-
-        49.98% {
-            transform: translateX(-1200px);
-        }
-
-        57.12% {
-            transform: translateX(-1600px);
-        }
-
-        64.26% {
-            transform: translateX(-1600px);
-        }
-
-        71.4% {
-            transform: translateX(-2000px);
-        }
-
-        78.54% {
-            transform: translateX(-2000px);
-        }
-
-        85.68% {
-            transform: translateX(-2400px);
-        }
-
-        92.82% {
-            transform: translateX(-2400px);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
+.carrossel-slide img {
+    width: 400px; /* Largura igual ao container para evitar rolagem */
+    height: 450px; 
+    border-radius: 5%;
+    object-fit: cover; /* Preenche o espaço mantendo a proporção */
+    object-position: center;  
+}
+@keyframes slide {
+    0% { transform: translateX(0); }
+    6% { transform: translateX(0); }
+    8% { transform: translateX(calc(-400px * 1)); } /* Transição 1-2 */
+    14% { transform: translateX(calc(-400px * 1)); } /* Pausa 2 * etc */
+    16% { transform: translateX(calc(-400px * 2)); }
+    22% { transform: translateX(calc(-400px * 2)); }
+    24% { transform: translateX(calc(-400px * 3)); }
+    30% { transform: translateX(calc(-400px * 3)); }
+    32% { transform: translateX(calc(-400px * 4)); }
+    38% { transform: translateX(calc(-400px * 4)); }
+    40% { transform: translateX(calc(-400px * 5)); }
+    46% { transform: translateX(calc(-400px * 5)); }
+    48% { transform: translateX(calc(-400px * 6)); }
+    54% { transform: translateX(calc(-400px * 6)); }
+    56% { transform: translateX(calc(-400px * 7)); }
+    62% { transform: translateX(calc(-400px * 7)); }
+    64% { transform: translateX(calc(-400px * 8)); }
+    70% { transform: translateX(calc(-400px * 8)); }
+    72% { transform: translateX(calc(-400px * 9)); }
+    78% { transform: translateX(calc(-400px * 9)); }
+    80% { transform: translateX(calc(-400px * 10)); }
+    86% { transform: translateX(calc(-400px * 10)); }
+    88% { transform: translateX(calc(-400px * 11)); }
+    94% { transform: translateX(calc(-400px * 11)); }
+    96% { transform: translateX(calc(-400px * 12)); }
+    100% { transform: translateX(0); } /* Volta ao início */
+}   
