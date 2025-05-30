@@ -147,11 +147,23 @@
         pontuacao = 0;
         button_avancar.innerHTML = "Próxima";
         mostrarQuestoes();
-    } function mostrarQuestoes() {
+    } 
+    function resetar(){
+        next
+    }
+
+
+    function mostrarQuestoes() {
+        resetar();
         var questaoAtual = questoes[questaoAtualIndex];
         var questaoON = currentQuestionIndex + 1;
         questaoElement.innerHTML = questaoON + " . " + questaoAtual.questao;
 
-    }
+   
+    questaoAtual.respostas.for((respostas)=>{
+        var botao = document.createElement("botao");
+    })
+
+     }
     mostrarQuestoes();
 </script>

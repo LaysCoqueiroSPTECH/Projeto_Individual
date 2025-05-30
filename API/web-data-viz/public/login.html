@@ -17,63 +17,62 @@
         <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
         <nav class="header_nav">
             <ul>
-                <li><a href="index.html #grey">Início</a></li>
-                <li><a href="index.html #sobre_mim">Sobre Mim</a></li>
-                <li><a href="index.html #quiz">Quiz</a></li>
-                <li><a href="index.html">Sobre Grey´s</a></li>
+                <li><a href="index.html#greys">Início</a></li>
+                <li><a href="index.html#sobre_mim">Sobre Mim</a></li>
+                <li><a href="index.html#quiz">Quiz</a></li>
+                <li><a href="index.html#sobre_greys">Sobre Grey´s</a></li>
                 <li><a class="button_cadlog" id="id_cadlog" href="login.html"> Cadastro/Login</a></li>
             </ul>
         </nav>
-
     </header>
-    <body>
-        <section class="container_cadastro_pagina">
-            <div class="pagina_cadastro">
-                <div class="cadastro_texto">
-                    <h1>LOGIN</h1>
-                </div>
-                <div class="cadastro_container">
-                    <div class="cadastro_formulario">
-                        <div class="campo">
-                            <span id="span_campos">E-mail:</span>
-                            <input id="email_input" type="text" placeholder="email@provedor.com" />
-                        </div>
-                        <div class="campo">
-                            <span id="span_campos">Senha:</span>
-                            <input id="senha_input" type="password" placeholder="******" />
-                        </div>
-                        <button class="button_login" onclick="entrar()">Login</button>
-                        <h5 class="login"> Não possuí cadastro ? <b><a href="cadastro.html" style="color:#849BB9;">Cadastre-se</a></b></h5>
-                        
-                        <div id="div_erros_login" class="alerta_erro">
-                            <div class="card_erro" id="cardErro">
-                                <span id="mensagem_erro"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cadastro_imagem">
-                        <img src="assets/imgs/equipe_greys1.png" alt="Equipe de Grey's Anatomy">
-                    </div>
-                </div>
+    <section class="container_cadastro_pagina">
+        <div class="pagina_cadastro">
+            <div class="cadastro_texto">
+                <h1>LOGIN</h1>
             </div>
-        </section>
+            <div class="cadastro_container">
+                <div class="cadastro_formulario">
+                    <div class="campo">
+                        <span id="span_campos">E-mail:</span>
+                        <input id="email_input" type="text" placeholder="email@provedor.com" />
+                    </div>
+                    <div class="campo">
+                        <span id="span_campos">Senha:</span>
+                        <input id="senha_input" type="password" placeholder="******" />
+                    </div>
+                    <button onclick="entrar()" class="button_login">Login</button>
+                    <h5 class="login"> Não possuí cadastro ? <b><a href="cadastro.html"
+                                style="color:#849BB9;">Cadastre-se</a></b></h5>
 
-    </body>
+                    <div id="div_erros_login" class="alerta_erro">
+                        <div class="card_erro" id="cardErro">
+                            <span id="mensagem_erro"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cadastro_imagem">
+                    <img src="assets/imgs/equipe_greys1.png" alt="Equipe de Grey's Anatomy">
+                </div>
 
-</html>
-<script>
+
+            </div>
+    </section>
+    <script>
     function entrar() {
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = document.getElementById("email_input").value;
+        var senhaVar = document.getElementById("senha_input").value;
+        var mensagemErroDiv = document.getElementById("mensagem_erro");
+        var cardErroDiv = document.getElementById("cardErro");
+
+        // Esconde a div de erro no início
+        cardErroDiv.style.display = 'none';
+        mensagemErroDiv.innerText = '';
 
         if (emailVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            cardErroDiv.style.display = 'block';
+            mensagemErroDiv.innerText = "Preencher todos os campos!";
             return false;
         }
-      
-
-        // console.log("FORM LOGIN: ", emailVar);
-        // console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -85,34 +84,27 @@
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+            console.log("ESTOU NO THEN DO entrar()!");
 
             if (resposta.ok) {
-                console.log(resposta);
-
-                // resposta.json().then(json => {
-                //     console.log(json);
-                //     console.log(JSON.stringify(json));
-                //     sessionStorage.EMAIL_USUARIO = json.email;
-                //     sessionStorage.NOME_USUARIO = json.nome;
-                //     sessionStorage.ID_USUARIO = json.id;
-
-                // });
+                resposta.json().then(data => {
+                    sessionStorage.setItem("usuarioEmail", emailVar);
+                    window.location.href = "quiz-conhecimento.html";
+                });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-
                 resposta.text().then(texto => {
-                    console.error(texto);
+                    cardErroDiv.style.display = 'block';
+                    mensagemErroDiv.innerText = "Erro no login: " + texto;
                 });
             }
 
         }).catch(function (erro) {
-            console.log(erro);
-        })
+            cardErroDiv.style.display = 'block';
+            mensagemErroDiv.innerText = "Erro de comunicação com o servidor.";
+        });
 
         return false;
     }
-
 </script>

@@ -95,8 +95,8 @@ input {
 }
 .card_erro {
   display: none;
-  background-color: #ffdddd;
-  color: #d9534f;
+  background-color: #97adc9;
+  color: white;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -110,3 +110,4 @@ input {
 .login h5{
 text-decoration: none;
 }
+ 
