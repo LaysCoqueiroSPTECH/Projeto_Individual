@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreyVerse - Quiz</title>
+    <link rel="stylesheet" href="css/style_botoes.css">
+    <link rel="stylesheet" href="css/style_nav_footer.css">
+    <link rel="stylesheet" href="css/style_quiz_personagem.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/imgs/logo.png">
+</head>
+
+<body>
+    <header>
+        <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
+        <nav class="header_nav">
+            <ul>
+                <li><a href="/index.html#greys">Início</a></li>
+                <li><a href="quiz-personagem.html">Quiz Personagem</a></li>
+                <li><a href="quiz-conhecimento.html">Quiz Conhecimento</a></li>
+                <li><a href="dashboard.html">Ranking</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="quiz">
+        <h1>Quem é você em Grey's Anatomy?</h1>
+        <form id="quizForm">
+            <div id="perguntasContainer"></div>
+            <button type="button" class="button_avancar" onclick="proximaPergunta()">Avançar</button>
+        </form>
+
+        <div id="resultado" style="display:none;">
+            <h2>Você é: <span id="nomePersonagem"></span></h2>
+            <img id="imagemPersonagem" src="" alt="" height="300px" width="350">
+            <p id="descricaoPersonagem"></p>
+        </div>
+    </div>
+
+    <script>
+        var perguntas = [
+            {
+                texto: "Quando está diante de um problema difícil, você...",
+                pilar: "Profundidade",
+                respostas: {
+                    meredith: "Conversa com alguém em quem confia para entender melhor.",
+                    cristina: "Reflete sozinho e busca uma solução lógica.",
+                    alex: "Age sem pensar muito, na hora resolve.",
+                    george: "Tenta manter a calma e ajudar outros também.",
+                    izzie: "Chora, mas depois se levanta e segue em frente."
+                }
+            },
+            {
+                texto: "Você se conecta com os outros principalmente através...",
+                pilar: "Conexão",
+                respostas: {
+                    meredith: "De conversas profundas e intensas.",
+                    cristina: "De respeito mútuo, sem muito afeto.",
+                    alex: "De ações práticas, não palavras.",
+                    george: "De amizade e lealdade.",
+                    izzie: "De emoção e cuidado constante."
+                }
+            },
+            {
+                texto: "Quando precisa falar sobre seus sentimentos, você...",
+                pilar: "Exposição",
+                respostas: {
+                    meredith: "Demonstra com palavras e gestos.",
+                    cristina: "Evita ao máximo e guarda para si.",
+                    alex: "Fala de forma ríspida e direta.",
+                    george: "Fica nervoso, mas tenta.",
+                    izzie: "Chora e se entrega completamente."
+                }
+            },
+            {
+                texto: "O que mais valoriza em uma amizade?",
+                pilar: "Relacionamento",
+                respostas: {
+                    meredith: "Lealdade nos piores momentos.",
+                    cristina: "Parceria para crescer juntos.",
+                    alex: "Alguém que não te abandone.",
+                    george: "Cuidado constante.",
+                    izzie: "Afeto incondicional."
+                }
+            },
+            {
+                texto: "Como lida com compromissos e horários?",
+                pilar: "Pontualidade",
+                respostas: {
+                    meredith: "Se atrasa às vezes, mas se importa.",
+                    cristina: "É pontual, odeia perder tempo.",
+                    alex: "Chega em cima da hora.",
+                    george: "Sempre está pronto antes.",
+                    izzie: "Corre contra o tempo, mas tenta."
+                }
+            },
+            {
+                texto: "Você costuma ter iniciativa quando algo precisa ser feito?",
+                pilar: "Iniciativa",
+                respostas: {
+                    meredith: "Espera alguém dar o primeiro passo.",
+                    cristina: "Age antes mesmo de pedirem.",
+                    alex: "Faz o que precisa sem aviso.",
+                    george: "Pergunta se pode ajudar.",
+                    izzie: "Só age se sente segurança."
+                }
+            },
+            {
+                texto: "Quando está sob pressão, você...",
+                pilar: "Resiliência",
+                respostas: {
+                    meredith: "Fica calado e firme.",
+                    cristina: "Usa o estresse para melhorar.",
+                    alex: "Explode, mas dá conta.",
+                    george: "Entra em pânico, mas se recupera.",
+                    izzie: "Se abala, mas insiste."
+                }
+            },
+            {
+                texto: "Como se vê profissionalmente?",
+                pilar: "Profissionalismo",
+                respostas: {
+                    meredith: "É dedicado, mas se afeta emocionalmente.",
+                    cristina: "Totalmente focado no trabalho.",
+                    alex: "Bom, mas pouco reconhecido.",
+                    george: "Faz o melhor que pode sempre.",
+                    izzie: "Precisa de motivação externa."
+                }
+            },
+            {
+                texto: "Você prefere trabalhar em grupo ou sozinho?",
+                pilar: "Relacionamento",
+                respostas: {
+                    meredith: "Prefere em dupla com alguém próximo.",
+                    cristina: "Sozinha é melhor.",
+                    alex: "Prefere resolver sem depender de ninguém.",
+                    george: "Gosta de estar em grupo.",
+                    izzie: "Se sente bem quando é acolhida."
+                }
+            },
+            {
+                texto: "Você lida melhor com elogios ou críticas?",
+                pilar: "Exposição",
+                respostas: {
+                    meredith: "Fica desconfortável com ambos.",
+                    cristina: "Ignora elogios e corrige críticas.",
+                    alex: "Aceita críticas com raiva e melhora.",
+                    george: "Absorve tudo, para o bem ou mal.",
+                    izzie: "Se emociona com elogios, sofre com críticas."
+                }
+            }
+        ];
+        var contagemPersonagens = {
+            meredith: 0,
+            cristina: 0,
+            george: 0,
+            izzie: 0,
+            alex: 0
+        };
+
+        const resultados = {
+            meredith: {
+                nome: "Meredith Grey",
+                descricao: "Você é reflexivo, forte e sempre busca entender a vida além da superfície. <br> Se você tem disposição para correr o risco, a vista do outro lado é espetacular  - Meredith Grey",
+                imagem: "assets/imgs/greyy.jpg"
+            },
+            cristina: {
+                nome: "Cristina Yang",
+                descricao: "Você é direto, altamente focado e valoriza a excelência.  <br> Ah, dane-se a beleza! Eu sou brilhante! Se quiser me agradar, elogie meu cérebro!",
+                imagem: "assets/imgs/cristina_bico.jpg"
+            },
+            george: {
+                nome: "George O'Malley",
+                descricao: "Você tem um coração enorme e está sempre disposto a ajudar.<br>DR. Bailey e eu estamos apaixonados",
+                imagem: "assets/imgs/george.jpg"
+            },
+            izzie: {
+                nome: "Izzie Stevens",
+                descricao: "Você é emocionalmente intenso e movido por empatia. <br>Só porque as pessoas fazem coisas horríveis, nem sempre significa que são pessoas horríveis",
+                imagem: "assets/imgs/izzie.jpg"
+            },
+            alex: {
+                nome: "Alex Karev",
+                descricao: "Você parece durão, mas por dentro tem um coração leal.<br> Eu fiz besteira, mas vocês tem que me perdoar, vocês são minha família",
+                imagem: "assets/imgs/alexxx.jpg"
+            }
+        };
+
+        let indiceAtual = 0;
+
+        function mostrarPergunta() {
+            const container = document.getElementById("perguntasContainer");
+            container.innerHTML = ""; // limpa a anterior
+            const pergunta = perguntas[indiceAtual];
+
+            const div = document.createElement("div");
+            div.innerHTML = `<p><strong>${indiceAtual + 1}.</strong> ${pergunta.texto}</p>`;
+
+            Object.entries(pergunta.respostas).forEach(([personagem, texto]) => {
+                div.innerHTML += `
+                    <label>
+                        <input type="radio" name="resposta" value="${personagem}" required>
+                        ${texto}
+                    </label><br>
+                `;
+            });
+
+            container.appendChild(div);
+
+            // Atualiza o texto do botão
+            const botaoAvancar = document.querySelector(".button_avancar");
+            if (botaoAvancar) {
+                botaoAvancar.textContent = (indiceAtual === perguntas.length - 1) ? "Ver Resultado" : "Avançar";
+            }
+        }
+
+        function proximaPergunta() {
+            const selecionado = document.querySelector('input[name="resposta"]:checked');
+
+            if (!selecionado) {
+                alert("Selecione uma opção antes de continuar.");
+                return;
+            }
+
+            const personagem = selecionado.value;
+            contagemPersonagens[personagem]++;
+
+            indiceAtual++;
+
+            if (indiceAtual < perguntas.length) {
+                mostrarPergunta();
+            } else {
+                mostrarResultado();
+            }
+        }
+
+        function mostrarResultado() {
+            var personagemFinal = Object.keys(contagemPersonagens).reduce((a, b) =>
+                contagemPersonagens[a] > contagemPersonagens[b] ? a : b
+            );
+            var dados = resultados[personagemFinal];
+
+            document.getElementById("quizForm").style.display = "none";
+            document.getElementById("resultado").style.display = "block";
+            document.getElementById("nomePersonagem").textContent = dados.nome;
+            document.getElementById("descricaoPersonagem").innerHTML = dados.descricao;
+            document.getElementById("imagemPersonagem").src = dados.imagem;
+
+
+            enviarResultado(personagemFinal);
+        }
+        mostrarPergunta();
+    
+    
+        function enviarResultado(personagem) {
+    fetch('/quiz/resultado', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ personagem })
+    })
+    .then(response => response.json())
+    .then(data => console.log('Resultado enviado com sucesso:', data))
+    .catch(error => console.error('Erro ao enviar resultado:', error));
+}
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,14 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const quizController = require('../controllers/quizController'); 
 
-// POST /quiz/salvar
-router.post('/salvar', (req, res) => {
-    const { nome, pontuacao } = req.body;
-
-    console.log(`Recebido do quiz: ${nome} - ${pontuacao}`);
-
-    // Aqui você pode salvar no banco de dados ou arquivo, se quiser
-    res.json({ mensagem: 'Pontuação recebida com sucesso!' });
-});
+router.post('/salvar', quizController.salvarPontuacao); 
 
 module.exports = router;

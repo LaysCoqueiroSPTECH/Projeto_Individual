@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreyVerse - Quiz</title>
     <link rel="stylesheet" href="css/style_botoes.css">
-    <link rel="stylesheet" href="css/style_nav_footer.css">
-    <link rel="stylesheet" href="css/style_quiz.css">
+    <link rel="stylesheet" href="css/style_quiz_conhecimento.css">
     <link rel="shortcut icon" type="imagex/png" href="assets/imgs/logo.png">
 </head>
 
@@ -16,11 +15,10 @@
         <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
         <nav class="header_nav">
             <ul>
-                <li><a href="index.html #grey">Início</a></li>
-                <li><a href="index.html #sobre_mim">Sobre Mim</a></li>
-                <li><a href="index.html #quiz">Quiz</a></li>
-                <li><a href="index.html">Sobre Grey´s</a></li>
-                <li><a class="button_cadlog" id="id_cadlog" href="login.html"> Cadastro/Login</a></li>
+                <li><a href="/index.html#greys">Início</a></li>
+                <li><a href="quiz-personagem.html">Quiz Personagem</a></li>
+                <li><a href="quiz-conhecimento.html">Quiz Conhecimento</a></li>
+                <li><a href="dashboard.html">Ranking</a></li>
             </ul>
         </nav>
     </header>
@@ -143,15 +141,15 @@
                 <p>Sua pontuação: ${pontuacao} de ${questoes.length}</p>
                 <p>Você errou: ${erros} questão(ões)</p>
             `;
-                if (pontuacao >= 7) {
-                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/Bokhee.jpg" alt="Bokhee com óculos engraçado" style="height: 300px; width: 300px; margin-left: 25%;"></span>`
+                if (pontuacao <= 5) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/alex_urso.jpg" alt="Alex surtando pelo urso" style="height: 300px; width: 400px; margin-left: 5%;"></span>`
                 } else if (pontuacao == 6) {
-                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/bailey_ok.jpg" alt="Bailey dando um ok com a mão na sala de cirurgia" style="height: 300px; width: 300px; margin-left: 25%;"></span>`
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/bailey_ok.jpg" alt="Bailey dando um ok com a mão na sala de cirurgia" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
+                } else if (pontuacao >= 7) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/Bokhee.jpg" alt="Bokhee com óculos engraçado" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
+                } else if (pontuacao == 10) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/cristina_patinho.jpg" alt="Cristina de capa de chuva amarela" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
                 }
-                else if (pontuacao <= 5) {
-                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/alex_urso.jpg" alt="Alex surtando pelo urso" style="height: 300px; width: 400px; margin-left: 20%;"></span>`
-                }
-
 
                 btnAvancar.style.display = "none";
                 salvarPontuacaoNoBanco(pontuacao);
@@ -199,10 +197,14 @@
             questaoAtual++;
             mostrarQuestao();
         });
+
+
         function salvarPontuacaoNoBanco(pontuacao) {
-            console.log("Session Storage no quiz:", sessionStorage); // Adicione esta linha
-            let nomeDoUsuario = sessionStorage.getItem("usuarioNome");
-            let pontuacaoFinal = 10;
+            console.log("Executando salvarPontuacaoNoBanco");
+            console.log("Session Storage no quiz:", sessionStorage);
+            let idDoUsuario = sessionStorage.getItem("usuarioId");
+            console.log("ID do Usuário ao salvar:", idDoUsuario);
+            let pontuacaoFinal = pontuacao;
 
             fetch('/quiz/salvar', {
                 method: 'POST',
@@ -210,15 +212,16 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    nome: nomeDoUsuario,
+                    usuarioId: idDoUsuario,
                     pontuacao: pontuacaoFinal
                 })
             })
-                .then(res => res.json()) // Aqui está o then correto
+                .then(res => res.json())
                 .then(data => console.log("Resultado salvo:", data))
-                .catch(err => console.error("Erro ao salvar pontuação:", err));
+                .catch(err => console.error("Erro ao salvar pontuacao:", err));
         }
         mostrarQuestao();
+        console.log("ID do usuário na página do quiz:", sessionStorage.getItem("usuarioId"));
 
     </script>
 </body>

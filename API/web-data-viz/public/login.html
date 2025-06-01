@@ -87,21 +87,23 @@
                 console.log("ESTOU NO THEN DO entrar()!");
 
                 if (resposta.ok) {
-                    resposta.json().then(data => {
-                        sessionStorage.setItem("usuarioEmail", emailVar);
-                        sessionStorage.setItem("usuarioNome", data.nome); // <-- salva o nome retornado do backend
-                        window.location.href = "quiz-conhecimento.html";
-
-                    });
-
-                } else {
-                    console.log("Houve um erro ao tentar realizar o login!");
-                    resposta.text().then(texto => {
-                        cardErroDiv.style.display = 'block';
-                        mensagemErroDiv.innerText = "Erro no login: " + texto;
-                    });
+                    if (resposta.ok) {
+                        resposta.json().then(data => {
+                            console.log('Dados do login:', data); // ADICIONE ESTA LINHA
+                            sessionStorage.setItem("idUsuario", data.idUsuario);
+                            sessionStorage.setItem("nomeUsuario", data.nome);
+                            sessionStorage.setItem("emailUsuario", data.email);
+                            sessionStorage.setItem("usuarioId", data.idUsuario);
+                            window.location.href = "quiz-conhecimento.html";
+                        });
+                    } else {
+                        console.log("Houve um erro ao tentar realizar o login!");
+                        resposta.text().then(texto => {
+                            cardErroDiv.style.display = 'block';
+                            mensagemErroDiv.innerText = "Erro no login: " + texto;
+                        });
+                    }
                 }
-
             }).catch(function (erro) {
                 cardErroDiv.style.display = 'block';
                 mensagemErroDiv.innerText = "Erro de comunicação com o servidor.";

@@ -16,6 +16,8 @@ function autenticar(req, res) {
 
                 if (resultadoAutenticar.length == 1) {
                     res.json({
+                        idUsuario: resultadoAutenticar[0].idUsuario,
+                        nome: resultadoAutenticar[0].nome,
                         email: resultadoAutenticar[0].email,
                         senha: resultadoAutenticar[0].senha,
                     });
@@ -48,7 +50,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar( nome, email, senha)
+        usuarioModel.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -2,7 +2,6 @@
 
     a {
         text-decoration: none;
-        white-space: nowrap;
     }
 
     * {
@@ -15,17 +14,57 @@
 
     body {
         background-color: #2E3E54;
-        
+        display: flex;
+        margin: 0;
+    }
 
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #849BB9;
+        height: 820px;
+    }
+
+    .header_nav {
+        margin-top: 20px;
+
+    }
+
+    .header_nav ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .header_nav ul li {
+        margin-bottom: 10px;
+
+    }
+
+    .header_nav ul li a {
+        display: block;
+        padding: 20px 20px;
+        color: white;
+        border-radius: 5px;
+        text-align: left;
     }
 
     .quiz {
         background-color: white;
-        max-width: 600px;
-        margin: 100px auto 0;/* faz desgrudar do alto e encaixar no meio */
-        padding: 30px;/* desgruda os elementos dos cantos OTIMO */
+        max-width: 700px;
+        margin-top: 10%;
+        height: 400px;
+        margin: 20px;
+        margin-top: 15%;
+        margin-left: 30%;
+        padding: 30px;
         border-radius: 3%;
-       
+
     }
 
     .quiz h1 {
@@ -47,7 +86,7 @@
         color: #2E3E54;
         font-weight: 500;
         width: 100%;
-        border: 1px solid #2E3E54; 
+        border: 1px solid #2E3E54;
         padding: 10px;
         margin: 10px 0;
         text-align: left;
@@ -64,28 +103,22 @@
 
     /* O hoover é um pseudoclass seletor que aplica estilo quando o mouse está em cima  do botão*/
 
-    
+
     .button_avancar {
-    background-color: #2E3E54; /* Cor de fundo padrão */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 15px; /* Espaço acima do botão "Avançar" */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        background-color: #2E3E54;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-.button_avancar:disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
-}
-
-.button_avancar:hover:enabled {
-    background-color: #849BB9;
-}
+    .button_avancar:hover:enabled {
+        background-color: #849BB9;
+    }
