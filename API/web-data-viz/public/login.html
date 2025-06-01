@@ -58,53 +58,55 @@
             </div>
     </section>
     <script>
-    function entrar() {
-        var emailVar = document.getElementById("email_input").value;
-        var senhaVar = document.getElementById("senha_input").value;
-        var mensagemErroDiv = document.getElementById("mensagem_erro");
-        var cardErroDiv = document.getElementById("cardErro");
+        function entrar() {
+            var emailVar = document.getElementById("email_input").value;
+            var senhaVar = document.getElementById("senha_input").value;
+            var mensagemErroDiv = document.getElementById("mensagem_erro");
+            var cardErroDiv = document.getElementById("cardErro");
 
-        // Esconde a div de erro no início
-        cardErroDiv.style.display = 'none';
-        mensagemErroDiv.innerText = '';
+            // Esconde a div de erro no início
+            cardErroDiv.style.display = 'none';
+            mensagemErroDiv.innerText = '';
 
-        if (emailVar == "" || senhaVar == "") {
-            cardErroDiv.style.display = 'block';
-            mensagemErroDiv.innerText = "Preencher todos os campos!";
-            return false;
-        }
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!");
-
-            if (resposta.ok) {
-                resposta.json().then(data => {
-                    sessionStorage.setItem("usuarioEmail", emailVar);
-                    window.location.href = "quiz-conhecimento.html";
-                });
-
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                resposta.text().then(texto => {
-                    cardErroDiv.style.display = 'block';
-                    mensagemErroDiv.innerText = "Erro no login: " + texto;
-                });
+            if (emailVar == "" || senhaVar == "") {
+                cardErroDiv.style.display = 'block';
+                mensagemErroDiv.innerText = "Preencher todos os campos!";
+                return false;
             }
 
-        }).catch(function (erro) {
-            cardErroDiv.style.display = 'block';
-            mensagemErroDiv.innerText = "Erro de comunicação com o servidor.";
-        });
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!");
 
-        return false;
-    }
-</script>
+                if (resposta.ok) {
+                    resposta.json().then(data => {
+                        sessionStorage.setItem("usuarioEmail", emailVar);
+                        sessionStorage.setItem("usuarioNome", data.nome); // <-- salva o nome retornado do backend
+                        window.location.href = "quiz-conhecimento.html";
+
+                    });
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    resposta.text().then(texto => {
+                        cardErroDiv.style.display = 'block';
+                        mensagemErroDiv.innerText = "Erro no login: " + texto;
+                    });
+                }
+
+            }).catch(function (erro) {
+                cardErroDiv.style.display = 'block';
+                mensagemErroDiv.innerText = "Erro de comunicação com o servidor.";
+            });
+
+            return false;
+        }
+    </script>

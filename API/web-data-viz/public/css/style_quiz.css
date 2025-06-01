@@ -64,10 +64,28 @@
 
     /* O hoover é um pseudoclass seletor que aplica estilo quando o mouse está em cima  do botão*/
 
-    .correct {
-        background-color: #9aeabc;
-    }
+    
+    .button_avancar {
+    background-color: #2E3E54; /* Cor de fundo padrão */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px; /* Espaço acima do botão "Avançar" */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .incorrect {
-        background-color: #ff9393;
-    }
+.button_avancar:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.button_avancar:hover:enabled {
+    background-color: #849BB9;
+}
