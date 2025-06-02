@@ -28,8 +28,8 @@ CREATE TABLE Respostas (
     idRespostas INT PRIMARY KEY AUTO_INCREMENT,
     fkPergunta INT,
     texto VARCHAR(200),
-    correta TINYINT DEFAULT NULL, -- só será usada se for quiz de conhecimento
-    personagem VARCHAR(50) DEFAULT NULL, -- só será usada se for quiz de personalidade
+    correta TINYINT DEFAULT NULL, 
+    personagem VARCHAR(50) DEFAULT NULL, 
     FOREIGN KEY (fkPergunta) REFERENCES Perguntas(idPerguntas)
 );
 
@@ -38,8 +38,7 @@ CREATE TABLE RespostasQuiz (
     fkUsuario INT,
     fkQuiz INT,
     dtParticipacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    pontuacao INT DEFAULT NULL, -- para quiz de conhecimento
-    personagemResult VARCHAR(100) DEFAULT NULL, -- para quiz de personalidade
+    pontuacao INT DEFAULT NULL, 
     FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (fkQuiz) REFERENCES Quiz(idQuiz)
 );

@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+
+a {
+    text-decoration: none;
+}
+
+* {
+    font-family: "Barlow", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2c3e50;
+
+}
+.container-sobre-mim {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #374D6A;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.titulo_sobre_mim {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+}
+
+.titulo_sobre_mim h1 {
+    display: flex;
+    justify-content: center;
+    margin-left: 25%;
+    width: 50%;
+    color: white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    font-size: 35px;
+    padding: 5px 0;
+}
+
+.sobre-mim-conteudo {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.imagem-lays {
+    min-width: 400px;
+    max-width: 800px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.imagem-lays img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+     .imagem-fundo {
+            width: 100%;
+            margin-top: 50px; 
+            overflow: hidden;
+        }
+
+        .imagem-fundo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+.texto {
+    min-width: 300px;
+    padding-right: 20px;
+}
+.texto p {
+    margin-bottom: 15px;
+    color: white;
+    font-size: 1.1em;
+    text-align: justify;
+}

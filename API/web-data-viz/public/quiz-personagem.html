@@ -32,7 +32,7 @@
 
         <div id="resultado" style="display:none;">
             <h2>Você é: <span id="nomePersonagem"></span></h2>
-            <img id="imagemPersonagem" src="" alt="" height="300px" width="350">
+            <img id="imagemPersonagem" src="" alt="" height="300px" width="320">
             <p id="descricaoPersonagem"></p>
         </div>
     </div>
@@ -158,25 +158,25 @@
             alex: 0
         };
 
-        const resultados = {
+        var resultados = {
             meredith: {
                 nome: "Meredith Grey",
-                descricao: "Você é reflexivo, forte e sempre busca entender a vida além da superfície. <br> Se você tem disposição para correr o risco, a vista do outro lado é espetacular  - Meredith Grey",
+                descricao: "Você é reflexivo, forte e sempre busca entender a vida além da superfície.",
                 imagem: "assets/imgs/greyy.jpg"
             },
             cristina: {
                 nome: "Cristina Yang",
-                descricao: "Você é direto, altamente focado e valoriza a excelência.  <br> Ah, dane-se a beleza! Eu sou brilhante! Se quiser me agradar, elogie meu cérebro!",
+                descricao: "Você é direto, altamente focado e valoriza a excelência.",
                 imagem: "assets/imgs/cristina_bico.jpg"
             },
             george: {
                 nome: "George O'Malley",
-                descricao: "Você tem um coração enorme e está sempre disposto a ajudar.<br>DR. Bailey e eu estamos apaixonados",
+                descricao: "Você tem um coração enorme e está sempre disposto a ajudar.",
                 imagem: "assets/imgs/george.jpg"
             },
             izzie: {
                 nome: "Izzie Stevens",
-                descricao: "Você é emocionalmente intenso e movido por empatia. <br>Só porque as pessoas fazem coisas horríveis, nem sempre significa que são pessoas horríveis",
+                descricao: "Você é emocionalmente intenso e movido por empatia.",
                 imagem: "assets/imgs/izzie.jpg"
             },
             alex: {
@@ -186,16 +186,15 @@
             }
         };
 
+       
         let indiceAtual = 0;
 
         function mostrarPergunta() {
-            const container = document.getElementById("perguntasContainer");
-            container.innerHTML = ""; // limpa a anterior
-            const pergunta = perguntas[indiceAtual];
-
-            const div = document.createElement("div");
+            var container = document.getElementById("perguntasContainer");
+            container.innerHTML = "";
+            var pergunta = perguntas[indiceAtual];
+            var div = document.createElement("div");
             div.innerHTML = `<p><strong>${indiceAtual + 1}.</strong> ${pergunta.texto}</p>`;
-
             Object.entries(pergunta.respostas).forEach(([personagem, texto]) => {
                 div.innerHTML += `
                     <label>
@@ -204,67 +203,42 @@
                     </label><br>
                 `;
             });
-
             container.appendChild(div);
-
-            // Atualiza o texto do botão
-            const botaoAvancar = document.querySelector(".button_avancar");
+            var botaoAvancar = document.querySelector(".button_avancar");
             if (botaoAvancar) {
                 botaoAvancar.textContent = (indiceAtual === perguntas.length - 1) ? "Ver Resultado" : "Avançar";
             }
         }
 
         function proximaPergunta() {
-            const selecionado = document.querySelector('input[name="resposta"]:checked');
-
+            var selecionado = document.querySelector('input[name="resposta"]:checked');
             if (!selecionado) {
                 alert("Selecione uma opção antes de continuar.");
                 return;
             }
-
-            const personagem = selecionado.value;
+            var personagem = selecionado.value;
             contagemPersonagens[personagem]++;
-
             indiceAtual++;
-
             if (indiceAtual < perguntas.length) {
                 mostrarPergunta();
             } else {
-                mostrarResultado();
+                mostrarResultadoQuiz();
             }
         }
 
-        function mostrarResultado() {
+        function mostrarResultadoQuiz() {
             var personagemFinal = Object.keys(contagemPersonagens).reduce((a, b) =>
                 contagemPersonagens[a] > contagemPersonagens[b] ? a : b
             );
             var dados = resultados[personagemFinal];
-
             document.getElementById("quizForm").style.display = "none";
             document.getElementById("resultado").style.display = "block";
             document.getElementById("nomePersonagem").textContent = dados.nome;
             document.getElementById("descricaoPersonagem").innerHTML = dados.descricao;
             document.getElementById("imagemPersonagem").src = dados.imagem;
-
-
-            enviarResultado(personagemFinal);
         }
+
         mostrarPergunta();
-    
-    
-        function enviarResultado(personagem) {
-    fetch('/quiz/resultado', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ personagem })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Resultado enviado com sucesso:', data))
-    .catch(error => console.error('Erro ao enviar resultado:', error));
-}
-
-
-
     </script>
 </body>
 
