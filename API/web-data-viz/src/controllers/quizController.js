@@ -2,7 +2,6 @@
 const Usuario = require('../models/usuarioModel');
 const quizModel = require('../models/quizModel');
 
-
 exports.salvarPontuacao = (req, res) => {
     const { usuarioId, pontuacao } = req.body;
     const idQuiz = 1; 

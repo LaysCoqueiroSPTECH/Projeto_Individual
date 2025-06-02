@@ -1,4 +1,3 @@
-// src/models/quizModel.js
 var database = require("../database/config");
 
 function salvarResultado(idUsuario, idQuiz, pontuacao) {
