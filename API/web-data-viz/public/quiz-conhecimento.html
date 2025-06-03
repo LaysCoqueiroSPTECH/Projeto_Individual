@@ -124,117 +124,106 @@
                 ],
             },
         ];
-        
+        var perguntaTitulo = document.querySelector(".perguntas h2");
+        var containerQuestoes = document.getElementById("botoes_quiz");
+        var btnAvancar = document.querySelector(".button_avancar");
 
-    var perguntaTitulo = document.querySelector(".perguntas h2");
-    var containerQuestoes = document.getElementById("botoes_quiz");
-    var btnAvancar = document.querySelector(".button_avancar");
+        var questaoAtual = 0;
+        var pontuacao = 0;
+        var erros = 0;
 
-    var questaoAtual = 0;
-    var pontuacao = 0;
-    var erros = 0;
+        function mostrarQuestao() {
+            containerQuestoes.innerHTML = ""; // Limpa as respostas anteriores
 
-    function mostrarQuestao() {
-        containerQuestoes.innerHTML = ""; // Limpa as respostas anteriores
-
-        if (questaoAtual >= questoes.length) {
-            perguntaTitulo.innerHTML = "Quiz Finalizado!";
-            containerQuestoes.innerHTML = `
+            if (questaoAtual >= questoes.length) {
+                perguntaTitulo.innerHTML = "Quiz Finalizado!";
+                containerQuestoes.innerHTML = `
                 <p>Sua pontuação: ${pontuacao} de ${questoes.length}</p>
                 <p>Você errou: ${erros} questão(ões)</p>
             `;
-            if (pontuacao <= 5) {
-                containerQuestoes.innerHTML += `<span> <img src="assets/imgs/alex_urso.jpg" alt="Alex surtando pelo urso" style="height: 300px; width: 400px; margin-left: 5%;"></span>`;
-            } else if (pontuacao == 6) {
-                containerQuestoes.innerHTML += `<span> <img src="assets/imgs/bailey_ok.jpg" alt="Bailey dando um ok com a mão na sala de cirurgia" style="height: 300px; width: 300px; margin-left: 15%;"></span>`;
-            } else if (pontuacao >= 7 && pontuacao < 10) {
-                containerQuestoes.innerHTML += `<span> <img src="assets/imgs/Bokhee.jpg" alt="Bokhee com óculos engraçado" style="height: 300px; width: 300px; margin-left: 15%;"></span>`;
-            } else if (pontuacao == 10) {
-                containerQuestoes.innerHTML += `<span> <img src="assets/imgs/cristina_patinho.jpg" alt="Cristina de capa de chuva amarela" style="height: 300px; width: 300px; margin-left: 15%;"></span>`;
+                if (pontuacao <= 5) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/alex_urso.jpg" alt="Alex surtando pelo urso" style="height: 300px; width: 400px; margin-left: 5%;"></span>`
+                } else if (pontuacao == 6) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/bailey_ok.jpg" alt="Bailey dando um ok com a mão na sala de cirurgia" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
+                } else if (pontuacao >= 7) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/Bokhee.jpg" alt="Bokhee com óculos engraçado" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
+                } else if (pontuacao == 10) {
+                    containerQuestoes.innerHTML += `<span> <img src="assets/imgs/cristina_patinho.jpg" alt="Cristina de capa de chuva amarela" style="height: 300px; width: 300px; margin-left: 15%;"></span>`
+                }
+
+                btnAvancar.style.display = "none";
+                salvarPontuacaoNoBanco(pontuacao);
+                return;
             }
 
-            btnAvancar.style.display = "none";
-            salvarPontuacaoNoBanco(pontuacao);
-            return;
-        }
+            let q = questoes[questaoAtual];
+            perguntaTitulo.innerHTML = `Pergunta ${questaoAtual + 1}: ${q.questao}`;
 
-        var q = questoes[questaoAtual];
-        perguntaTitulo.innerHTML = "Pergunta " + (questaoAtual + 1) + ": " + q.questao;
+            q.respostas.forEach((resp) => {
+                let btn = document.createElement("button");
+                btn.innerText = resp.text;
+                btn.classList.add("btn_quiz");
 
-        for (var i = 0; i < q.respostas.length; i++) {
-            var resp = q.respostas[i];
-            var btn = document.createElement("button");
-            btn.innerText = resp.text;
-            btn.className = "btn_quiz";
-
-            (function (respostaCorreta, botao, questaoLocal) {
-                botao.onclick = function () {
-                    verificarResposta(respostaCorreta, botao, questaoLocal);
-
-                    var botoes = document.getElementsByClassName("btn_quiz");
-                    for (var j = 0; j < botoes.length; j++) {
-                        botoes[j].disabled = true;
-                    }
+                btn.onclick = () => {
+                    verificarResposta(resp.correct, btn, q);
+                    document.querySelectorAll(".btn_quiz").forEach(b => b.disabled = true);
                     btnAvancar.disabled = false;
                 };
-            })(resp.correct, btn, q);
 
-            containerQuestoes.appendChild(btn);
+                containerQuestoes.appendChild(btn);
+            });
+
+            btnAvancar.disabled = true; // Impede avançar sem responder
         }
 
-        btnAvancar.disabled = true; // Impede avançar sem responder
-    }
-
-    // Recebe 3 parametros (correta vem do true e false), o botão que o usuário clicou,  questão o objeto de questão atual
-    function verificarResposta(correta, botao, questao) {
-        if (correta) {
-            pontuacao++; // se estiver correta aumenta a pontuação e aparece essa cor 
-            botao.style.backgroundColor = "#4CAF50";
-        } else {
-            erros++; // se estiver incorreta aumenta o erro e adiciona essa cor
-            botao.style.backgroundColor = "#f44336";
-
-            var respostas = questao.respostas;
-            var botoes = document.getElementsByClassName("btn_quiz");
-            for (var i = 0; i < respostas.length; i++) {
-                if (respostas[i].correct) {
-                    for (var j = 0; j < botoes.length; j++) {
-                        if (botoes[j].innerText === respostas[i].text) {
-                            botoes[j].style.backgroundColor = "#4CAF50"; // e preenche a que era para ser correta
-                        }
+        function verificarResposta(correta, botao, questao) {
+            if (correta) {
+                pontuacao++;
+                botao.style.backgroundColor = "#4CAF50";
+            } else {
+                erros++;
+                botao.style.backgroundColor = "#f44336";
+                // Destaca a resposta correta
+                const respostaCorreta = questao.respostas.find(r => r.correct);
+                document.querySelectorAll(".btn_quiz").forEach(b => {
+                    if (b.innerText === respostaCorreta.text) {
+                        b.style.backgroundColor = "#4CAF50";
                     }
-                }
+                });
             }
         }
-    }
 
-    btnAvancar.addEventListener("click", function () {
-        questaoAtual++;
-        mostrarQuestao();
-    });
+        btnAvancar.addEventListener("click", () => {
+            questaoAtual++;
+            mostrarQuestao();
+        });
 
-    function salvarPontuacaoNoBanco(pontuacao) {
-        console.log("Executando salvarPontuacaoNoBanco");
-        console.log("Session Storage no quiz:", sessionStorage);
-        var idDoUsuario = sessionStorage.getItem("usuarioId");
-        console.log("ID do Usuário ao salvar:", idDoUsuario);
-        var pontuacaoFinal = pontuacao;
 
-        fetch('/quiz/salvar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                usuarioId: idDoUsuario,
-                pontuacao: pontuacaoFinal
+        function salvarPontuacaoNoBanco(pontuacao) {
+            console.log("Executando salvarPontuacaoNoBanco");
+            console.log("Session Storage no quiz:", sessionStorage);
+            let idDoUsuario = sessionStorage.getItem("usuarioId");
+            console.log("ID do Usuário ao salvar:", idDoUsuario);
+            let pontuacaoFinal = pontuacao;
+
+            fetch('/quiz/salvar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    usuarioId: idDoUsuario,
+                    pontuacao: pontuacaoFinal
+                })
             })
-        })
-            .then(function (res) { return res.json(); })
-            .then(function (data) { console.log("Resultado salvo:", data); })
-            .catch(function (err) { console.error("Erro ao salvar pontuacao:", err); });
-    }
+                .then(res => res.json())
+                .then(data => console.log("Resultado salvo:", data))
+                .catch(err => console.error("Erro ao salvar pontuacao:", err));
+        }
+        mostrarQuestao();
+        console.log("ID do usuário na página do quiz:", sessionStorage.getItem("usuarioId"));
 
-    mostrarQuestao();
-    console.log("ID do usuário na página do quiz:", sessionStorage.getItem("usuarioId"));
-</script>
+    </script>
+</body>
+
+</html>

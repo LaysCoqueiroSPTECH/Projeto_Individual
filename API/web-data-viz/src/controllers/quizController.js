@@ -1,9 +1,10 @@
-var Usuario = require('../models/usuarioModel');
-var quizModel = require('../models/quizModel');
+
+const Usuario = require('../models/usuarioModel');
+const quizModel = require('../models/quizModel');
 
 exports.salvarPontuacao = (req, res) => {
-    var { usuarioId, pontuacao } = req.body;
-    var idQuiz = 1; 
+    const { usuarioId, pontuacao } = req.body;
+    const idQuiz = 1; 
 
     if (!usuarioId) {
         return res.status(400).json({ error: "ID do usuário é obrigatório!" });
@@ -26,7 +27,7 @@ exports.salvarPontuacao = (req, res) => {
 exports.obterRanking = async (req, res) => {
     try {
 
-        var instrucaoRanking = `
+        const instrucaoRanking = `
             SELECT u.idUsuario, u.nome, rq.pontuacao
             FROM RespostasQuiz rq
             JOIN Usuario u ON rq.fkUsuario = u.idUsuario
@@ -34,7 +35,7 @@ exports.obterRanking = async (req, res) => {
             ORDER BY rq.pontuacao DESC;
         `;
 
-        var rankingData = await database.executar(instrucaoRanking);
+        const rankingData = await database.executar(instrucaoRanking);
         res.status(200).json(rankingData);
     } catch (error) {
         console.error('Erro ao obter ranking:', error);

@@ -41,6 +41,7 @@
         var perguntas = [
             {
                 texto: "Quando está diante de um problema difícil, você...",
+                pilar: "Profundidade",
                 respostas: {
                     meredith: "Conversa com alguém em quem confia para entender melhor.",
                     cristina: "Reflete sozinho e busca uma solução lógica.",
@@ -51,6 +52,7 @@
             },
             {
                 texto: "Você se conecta com os outros principalmente através...",
+                pilar: "Conexão",
                 respostas: {
                     meredith: "De conversas profundas e intensas.",
                     cristina: "De respeito mútuo, sem muito afeto.",
@@ -61,6 +63,7 @@
             },
             {
                 texto: "Quando precisa falar sobre seus sentimentos, você...",
+                pilar: "Exposição",
                 respostas: {
                     meredith: "Demonstra com palavras e gestos.",
                     cristina: "Evita ao máximo e guarda para si.",
@@ -71,6 +74,7 @@
             },
             {
                 texto: "O que mais valoriza em uma amizade?",
+                pilar: "Relacionamento",
                 respostas: {
                     meredith: "Lealdade nos piores momentos.",
                     cristina: "Parceria para crescer juntos.",
@@ -81,6 +85,7 @@
             },
             {
                 texto: "Como lida com compromissos e horários?",
+                pilar: "Pontualidade",
                 respostas: {
                     meredith: "Se atrasa às vezes, mas se importa.",
                     cristina: "É pontual, odeia perder tempo.",
@@ -91,6 +96,7 @@
             },
             {
                 texto: "Você costuma ter iniciativa quando algo precisa ser feito?",
+                pilar: "Iniciativa",
                 respostas: {
                     meredith: "Espera alguém dar o primeiro passo.",
                     cristina: "Age antes mesmo de pedirem.",
@@ -101,6 +107,7 @@
             },
             {
                 texto: "Quando está sob pressão, você...",
+                pilar: "Resiliência",
                 respostas: {
                     meredith: "Fica calado e firme.",
                     cristina: "Usa o estresse para melhorar.",
@@ -111,6 +118,7 @@
             },
             {
                 texto: "Como se vê profissionalmente?",
+                pilar: "Profissionalismo",
                 respostas: {
                     meredith: "É dedicado, mas se afeta emocionalmente.",
                     cristina: "Totalmente focado no trabalho.",
@@ -121,6 +129,7 @@
             },
             {
                 texto: "Você prefere trabalhar em grupo ou sozinho?",
+                pilar: "Relacionamento",
                 respostas: {
                     meredith: "Prefere em dupla com alguém próximo.",
                     cristina: "Sozinha é melhor.",
@@ -131,6 +140,7 @@
             },
             {
                 texto: "Você lida melhor com elogios ou críticas?",
+                pilar: "Exposição",
                 respostas: {
                     meredith: "Fica desconfortável com ambos.",
                     cristina: "Ignora elogios e corrige críticas.",
@@ -175,18 +185,16 @@
                 imagem: "assets/imgs/alexxx.jpg"
             }
         };
+
        
-        var indiceAtual = 0;
+        let indiceAtual = 0;
 
         function mostrarPergunta() {
-            // acessa seu elemento HTML pelo atributo do id no HTML 
             var container = document.getElementById("perguntasContainer");
             container.innerHTML = "";
             var pergunta = perguntas[indiceAtual];
             var div = document.createElement("div");
             div.innerHTML = `<p><strong>${indiceAtual + 1}.</strong> ${pergunta.texto}</p>`;
-            // Onde os inputs dão a resposta, o forEach itera a cada vez que recebemos um personagem, texto.
-            // var resposta {meredith:  "Resposta  1",  Cristina "Resposta 2"}; o forEatch vai ser meredith Resposta 1 cristina Resposta 2
             Object.entries(pergunta.respostas).forEach(([personagem, texto]) => {
                 div.innerHTML += `
                     <label>
@@ -219,11 +227,8 @@
         }
 
         function mostrarResultadoQuiz() {
-            // Objects é um metodo que recebe um objeto e retorna um array com as chaves/ propriedades do objeto
             var personagemFinal = Object.keys(contagemPersonagens).reduce((a, b) =>
                 contagemPersonagens[a] > contagemPersonagens[b] ? a : b
-
-                // a é o acumulador do personagem que está com maior pontuação e b é o próximo personagem que está sendo comparado
             );
             var dados = resultados[personagemFinal];
             document.getElementById("quizForm").style.display = "none";

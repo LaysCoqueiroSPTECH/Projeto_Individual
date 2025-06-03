@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style_dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container_dashboard">
+    <div class="linha_kpi">
+      <div class="kpi_box">
+        <div class="kpi_titulo">Pontuação Média Geral</div>
+        <div class="kpi_valor" id="kpi_media_geral">Carregando...</div>
+      </div>
+      <div class="kpi_box">
+        <div class="kpi_titulo">Pontuação Média Individual</div>
+        <div class="kpi_valor" id="kpi_media_individual">Carregando...</div>
+      </div>
+    </div>
+
+    <div class="linha_grafico">
+      <div class="grafico_container">
+        <div class="grafico_titulo">Top 3 Usuários com Mais Acertos</div>
+        <canvas class="grafico_one" id="grafico_raking"></canvas>
+      </div>
+      <div class="grafico_container">
+        <div class="grafico_titulo">Gráfico Evolução de Desempenho</div>
+        <canvas class="grafico_two" id="grafico_desempenho"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+</html>
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const idUsuario = sessionStorage.getItem("usuarioId"); // Pegue o ID do usuário logado
+        if (!idUsuario) {
+            console.error("ID do usuário não encontrado no sessionStorage.");
+            return;
+        }
+
+        // Gráfico de Ranking dos Usuários
+        const ctxRanking = document.getElementById("grafico_raking")?.getContext("2d");
+        if (ctxRanking) {
+            carregarGrafico(ctxRanking, "/dashboard/grafico-ranking", atualizarGraficoRanking, (data) => ({
+                labels: data.map((item) => item.nome),
+                values: data.map((item) => item.pontuacao_total || 0) // Garantir fallback
+            }));
+        }
+
+        // Gráfico de Evolução de Desempenho
+        const ctxPerformance = document.getElementById("grafico_desempenho")?.getContext("2d");
+        if (ctxPerformance) {
+            carregarGrafico(ctxPerformance, `/dashboard/grafico-evolucao/${idUsuario}`, atualizarGraficoPerformance, (data) => ({
+            labels: data.map((_, index) => `Tentativa ${index + 1}`),
+            values: data.map((item) => item.pontuacao_usuario || 0)
+        }));
+        }
+
+        // Obter KPIs 
+        obterKpiMediaUsuario();
+        obterKpiMediaGeral();
+    });
+
+    // Função genérica para carregar gráficos
+    function carregarGrafico(ctx, url, atualizarGrafico, processarDados) {
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+                const processed = processarDados(data);
+
+                // Garantir que labels e values tenham fallback
+                const labels = processed.labels || [];
+                const values = processed.values.map((v) => v || 0); // Substituir valores inexistentes por 0
+
+                atualizarGrafico(ctx, labels, values);
+            })
+            .catch((err) => console.error(`Erro ao buscar dados de ${url}:`, err));
+    }
+
+
+    // Função para atualizar o gráfico de Ranking dos Usuários
+    function atualizarGraficoRanking(ctx, labels, data) {
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Pontuação",
+                    backgroundColor: "#43A047",
+                    data: data,
+                    barThickness: 30,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    x: { ticks: { color: "#737373" }, grid: { display: false } },
+                    y: { ticks: { color: "#737373" }, grid: { color: "#e5e5e5" } },
+                },
+            },
+        });
+    }
+
+    // Função para atualizar o gráfico de Evolução do Desempenho
+    function atualizarGraficoPerformance(ctx, labels, data) {
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Pontuação Média",
+                    borderColor: "#43A047",
+                    backgroundColor: "rgba(67, 160, 71, 0.2)",
+                    data: data,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 4, // Remove as "bolas" (pontos) no gráfico
+                    pointHoverRadius: 4 // Remove o efeito de hover sobre os pontos
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    x: { ticks: { color: "#737373" }, grid: { display: false } },
+                    y: { ticks: { color: "#737373" }, grid: { color: "#e5e5e5" } },
+                },
+            },
+        });
+    }
+
+    // Função para obter KPIs do usuário
+    function obterKpiMediaUsuario() {
+        const idUsuario = sessionStorage.getItem("usuarioId");
+
+        if (!idUsuario) {
+            console.error("ID do usuário não encontrado no sessionStorage.");
+            return;
+        }
+
+        fetch(`/dashboard/kpi-media/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        })
+            .then((resposta) => {
+                if (!resposta.ok) {
+                    throw new Error(`Erro na API: ${resposta.statusText}`);
+                }
+                return resposta.json();
+            })
+            .then((kpi) => {
+                console.log("KPIs recebidas com sucesso:", kpi);    
+
+                // Garantir valores padrão caso as KPIs estejam ausentes
+                const mediaPontuacao = parseFloat(kpi.media_pontuacao_usuario) || 0;
+
+                // Atualiza os elementos do HTML com valores tratados
+                const kpiMediaPontuacaoUsuario = document.getElementById("kpi_media_individual");
+
+                if (kpiMediaPontuacaoUsuario) kpiMediaPontuacaoUsuario.textContent = mediaPontuacao.toFixed(2);
+            })
+            .catch((erro) => {
+                console.error("Erro ao obter KPIs:", erro.message);
+                alert("Erro ao carregar as KPIs. Tente novamente.");
+            });
+    }
+
+    // Função para obter KPIs do usuário
+    function obterKpiMediaGeral() {
+
+        fetch(`/dashboard/kpi-media-geral`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        })
+            .then((resposta) => {
+                if (!resposta.ok) {
+                    throw new Error(`Erro na API: ${resposta.statusText}`);
+                }
+                return resposta.json();
+            })
+            .then((kpiArray) => {
+                console.log("KPIs recebidas com sucesso:", kpiArray);
+
+                const primeiroKpi = kpiArray[0] || {}; // proteção caso o array esteja vazio
+                const mediaPontuacaoGeral = parseFloat(primeiroKpi.media_pontuacao_geral) || 0;
+
+                console.log(mediaPontuacaoGeral);
+
+                const kpiMediaPontuacaoGeral = document.getElementById("kpi_media_geral");
+                if (kpiMediaPontuacaoGeral) kpiMediaPontuacaoGeral.textContent = mediaPontuacaoGeral.toFixed(2);
+            })
+            .catch((erro) => {
+                console.error("Erro ao obter KPIs:", erro.message);
+                alert("Erro ao carregar as KPIs. Tente novamente.");
+            });
+    }
+
+</script>

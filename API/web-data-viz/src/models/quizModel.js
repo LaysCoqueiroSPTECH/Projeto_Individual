@@ -12,4 +12,3 @@ function salvarResultado(idUsuario, idQuiz, pontuacao) {
 module.exports = {
     salvarResultado
 };
-
