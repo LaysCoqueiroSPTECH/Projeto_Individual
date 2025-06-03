@@ -1,20 +1,19 @@
 CREATE DATABASE GreyVerse;
 Use GreyVerse;
 
-
 CREATE TABLE Usuario(
 idUsuario INT PRIMARY KEY auto_increment, 
 nome varchar(45),
 email varchar (70),
 senha varchar (70)
 );
-SELECT * FROM Usuario;
 
 CREATE TABLE Quiz (
     idQuiz INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(100) NOT NULL,
     descricao VARCHAR(350),
-    tipo ENUM('personalidade', 'conhecimento')
+    tipo varchar(255)
+    Constraint chk_tipo CHECK (tipo in ('personalidade', 'conhecimento'))
 );
 
 CREATE TABLE Perguntas (
@@ -24,25 +23,20 @@ CREATE TABLE Perguntas (
     FOREIGN KEY (fkQuiz) REFERENCES Quiz(idQuiz)
 );
 
-CREATE TABLE Respostas (
-    idRespostas INT PRIMARY KEY AUTO_INCREMENT,
-    fkPergunta INT,
-    texto VARCHAR(500),
-    correta boolean DEFAULT NULL, -- só será usada se for quiz de conhecimento
-    personagem VARCHAR(50) DEFAULT NULL, -- só será usada se for quiz de personalidade
-    FOREIGN KEY (fkPergunta) REFERENCES Perguntas(idPerguntas)
-);
-
 CREATE TABLE RespostasQuiz (
     idRespostasQuiz INT PRIMARY KEY AUTO_INCREMENT,
     fkUsuario INT,
     fkQuiz INT,
     dtParticipacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    pontuacao INT DEFAULT NULL, -- para quiz de conhecimento
-    personagemResult VARCHAR(100) DEFAULT NULL, -- para quiz de personalidade
+    pontuacao INT DEFAULT NULL, 
     FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (fkQuiz) REFERENCES Quiz(idQuiz)
 );
-select * from Respostas;
 
+select * from Usuario;
+select * from RespostasQuiz;
+
+SELECT * FROM Usuario JOIN RespostasQuiz;
+
+INSERT INTO Quiz (titulo, tipo) VALUES ('Quiz de Conhecimento Grey\'s Anatomy', 'conhecimento');
 
