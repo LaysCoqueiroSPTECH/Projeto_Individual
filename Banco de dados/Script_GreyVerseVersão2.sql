@@ -40,3 +40,8 @@ SELECT * FROM Usuario JOIN RespostasQuiz;
 
 INSERT INTO Quiz (titulo, tipo) VALUES ('Quiz de Conhecimento Grey\'s Anatomy', 'conhecimento');
 
+CREATE VIEW vw_ranking_usuarios AS SELECT u.idUsuario, u.nome, MAX(Rq.pontuacao) AS pontuacaoUsuario FROM Usuario u JOIN RespostasQuiz Rq on Rq.fkUsuario = u.idUsuario GROUP BY u.idUsuario,  u.nome;
+SELECT * FROM vw_ranking_usuarios ORDER BY pontuacaoUsuario DESC;
+
+CREATE VIEW vw_tentativas_desempenho AS SELECT Rq.FkUsuario, Rq.FkQuiz AS id_QUIZ, Rq.pontuacao AS pontuacaoUsuario FROM RespostasQuiz Rq ORDER BY Rq.fkUsuario, Rq.dtParticipacao;
+SELECT * FROM vw_tentativas_desempenho ORDER BY pontuacaoUsuario DESC;
