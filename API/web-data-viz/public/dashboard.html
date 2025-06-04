@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="css/style_dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
+<header>
+        <img src="assets/imgs/logo.png" alt="Logo - GreyVerse" height="100px" width="130px">
+        <nav class="header_nav">
+            <ul>
+                <li><a href="/index.html#greys">Início</a></li>
+                <li><a href="quiz-personagem.html">Quiz Personagem</a></li>
+                <li><a href="quiz-conhecimento.html">Quiz Conhecimento</a></li>
+                <li><a href="dashboard.html">Ranking</a></li>
+            </ul>
+        </nav>
+    </header>
 <body>
   <div class="container_dashboard">
     <div class="linha_kpi">
@@ -95,7 +105,7 @@
                 labels: labels,
                 datasets: [{
                     label: "Pontuação",
-                    backgroundColor: "#43A047",
+                    backgroundColor: "#2E3E54",
                     data: data,
                     barThickness: 30,
                 }],
@@ -107,8 +117,8 @@
                     legend: { display: false },
                 },
                 scales: {
-                    x: { ticks: { color: "#737373" }, grid: { display: false } },
-                    y: { ticks: { color: "#737373" }, grid: { color: "#e5e5e5" } },
+                    x: { ticks: { color: "#ffffff" },font: {size: 20 }, grid: { display: false } },
+                    y: { ticks: { color: "#ffffff" },font: {size: 20 }, grid: { color: "#ffffff" } },
                 },
             },
         });
@@ -123,7 +133,7 @@
                 datasets: [{
                     label: "Pontuação Média",
                     borderColor: "#43A047",
-                    backgroundColor: "rgba(67, 160, 71, 0.2)",
+                    backgroundColor: "#2E3E54",
                     data: data,
                     tension: 0.4,
                     fill: true,
@@ -138,8 +148,8 @@
                     legend: { display: false },
                 },
                 scales: {
-                    x: { ticks: { color: "#737373" }, grid: { display: false } },
-                    y: { ticks: { color: "#737373" }, grid: { color: "#e5e5e5" } },
+                    x: { ticks: { color: "#ffffff" },font: {size: 20 }, grid: { display: false } },
+                    y: { ticks: { color: "#ffffff" },font: {size: 20 }, grid: { color: "#ffffff" } },
                 },
             },
         });
